@@ -1,0 +1,241 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mega Okazja -50%</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+body {
+	height: 100vh;
+	font-family: 'Montserrat', sans-serif;
+}
+
+.discount-wrap {
+	position: fixed;
+	top: 50%;
+	height: 500px;c
+	width: 500px;
+	transform: translateY(-50%);
+	z-index: 9999;
+}
+	
+.discount-wrap a {
+	text-decoration: none;
+}
+
+.discount-wrap a:hover {
+	text-decoration: none;
+}
+
+.mega-discount {
+	position: absolute;
+	top: 50%;
+	left: 10px;
+	height: 40px;
+	width: 100px;
+	transform: translateY(-50%);
+	background-color: #ff3131;
+	border-radius: 20px;
+}
+
+.discount-circle {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: -10px;
+	left: -5px;
+	background-color: #fff;
+	height: 60px;
+	width: 60px;
+	border-radius: 50%;
+	box-shadow: 0 0 5px 1px #ff3131;
+	z-index: -1;
+	cursor: pointer;
+	transition: 0.5s;
+}
+
+.discount-percentage {
+	position: absolute;
+	top: 50%;
+	left: 5px;
+	transform: translateY(-50%);
+	color: #ff3131;
+	text-shadow: 0 0 1px #ff3131;
+	cursor: pointer;
+	transition: 0.5s;
+	font-size: 16px;
+	animation: pulse 0.5s infinite alternate;
+}
+
+.discount-query {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	top: 50%;
+	right: 5px;
+	transform: translateY(-50%);
+	font-size: 20px;
+	cursor: pointer;
+}
+
+.discount-move-left {
+	left: 52px;
+	color: #fff;
+	}
+
+.discount-modal {
+	position: absolute;
+	top: 100px;
+	left: 125px;
+	width: 300px;
+	height: 300px;
+	background: url('img/sale-50.jpg');
+	box-shadow: 0 0 5px 1px #ff3131;
+	border-radius: 5px;
+	opacity: 0;
+	transition: opacity .5s;
+}
+
+.discount-modal span {
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding: 5px;
+	filter: grayscale(3) brightness(10);
+	font-size: 12px;
+	text-shadow: 1px 1px #000;
+	cursor: pointer;
+}
+
+.discount-modal button {
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	transform: translate(-50%,-50%);
+	background: transparent;
+	border: none;
+	box-shadow: 0 0 5px 1px #ff3131;
+	padding: 8px 20px;
+	text-transform: uppercase;
+	color: #ff3131;
+	transition: 0.5s;
+	cursor: pointer;
+}
+
+button::before {
+	position: absolute;
+	content: '';
+	left: 0;
+	bottom: 0;
+	width: 100%;
+	height: 0;
+	transition: 0.5s;
+	background-color: #fff;
+	z-index: -1;
+}
+
+button:hover::before {
+	height: 100%;
+	background-color: #fff;
+	z-index: -1;
+	box-shadow: 0 0 5px 1px #fff;
+}
+
+button:hover {
+	color: #ff3131;
+}
+
+
+/*.mega-discount:hover .discount-circle {
+left: 52px;
+}
+
+.mega-discount:hover .discount-percentage {
+color: #fff;
+}
+*/
+
+@keyframes pulse {
+	0% {
+		transform: translateY(-50%) scale(1);
+	}
+	
+	100% {
+		transform: translateY(-50%) scale(1.2);
+	}
+}
+
+</style>
+</head>
+<body>
+	<div id="wrapper"></div>
+
+<script>
+	function discountFifty() {
+		const wrapper = document.querySelector('#wrapper');
+		const discountWrap = document.createElement('div');
+		const megaDiscount = document.createElement('div');
+		const discountModal = document.createElement('div');
+		const newSpan = document.createElement('span');
+		const newBtn = document.createElement('button');
+		const discountCircle = document.createElement('div');
+		const discountPercentage = document.createElement('div');
+		const discountQuery = document.createElement('div');
+		const spanPercentage = document.createElement('span');
+		const spanQuery = document.createElement('span');
+		wrapper.appendChild(discountWrap);
+		discountWrap.className = 'discount-wrap';
+		discountWrap.appendChild(megaDiscount);
+		megaDiscount.className = 'mega-discount';
+		megaDiscount.appendChild(discountCircle);
+		discountCircle.className = 'discount-circle discount-pulsing';
+		megaDiscount.appendChild(discountPercentage);
+		discountPercentage.className = 'discount-percentage';
+		discountPercentage.appendChild(spanPercentage);
+		spanPercentage.textContent = '-50%';
+		megaDiscount.appendChild(discountQuery);
+		discountQuery.className = 'discount-query';
+		discountQuery.appendChild(spanQuery);
+		spanQuery.textContent = '🌼';
+		discountWrap.appendChild(discountModal);
+		discountModal.className = 'discount-modal';
+		discountModal.appendChild(newSpan);
+		newSpan.textContent = '❌';
+		discountModal.appendChild(newBtn);
+		newBtn.innerHTML = '<a href="https://cudmoda.pl/kategoria/kobieta/mega-okazja-50">sprawdź</a>';
+		megaDiscount.addEventListener('click', function() {
+			const closeModal = () => {
+				discountPercentage.style.color = '#ff3131';
+				discountQuery.style.animation = 'none';
+				discountPercentage.style.animation = 'pulse 0.5s 0.2s infinite alternate';
+				discountModal.style.opacity = '0';
+				discountCircle.setAttribute('class','discount-circle discount-pulsing');
+			};
+			discountCircle.classList.toggle('discount-move-left');
+			newSpan.addEventListener('click', closeModal);
+			
+			if(discountCircle.classList.contains('discount-move-left')) {
+				discountPercentage.style.color = '#fff';
+				discountPercentage.style.animation = 'none';
+				discountQuery.style.animation = 'pulse 0.5s 0.2s infinite alternate';
+				discountModal.style.opacity = '1';
+			}
+			else {
+				closeModal();
+			}
+		});
+	}
+	discountFifty();
+
+</script>	
+</body>
+</html>
